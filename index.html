@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" theme="light">
+    <head>
+        <meta charset="UTF-8">
+        <title>XDOCKTOOL - Web</title>
+        <link rel="stylesheet" href="styles.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="res/XDMGR.ico">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.12/pdfmake.min.js" integrity="sha512-axXaF5grZBaYl7qiM6OMHgsgVXdSLxqq0w7F4CQxuFyrcPmn0JfnqsOtYHUun80g6mRRdvJDrTCyL8LQqBOt/Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.12/vfs_fonts.min.js" integrity="sha512-EFlschXPq/G5zunGPRSYqazR1CMKj0cQc8v6eMrQwybxgIbhsfoO5NAMQX3xFDQIbFlViv53o7Hy+yCWw6iZxA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </head>
+
+    <body>
+        
+        <div class="main">
+            <div class="headerFlexRoot">
+                <h1 id="header_a">XDOCKTOOL - WEB</h1>
+
+                <div class="nav">
+                    <a class="navItem" id="helpButton">HELP</a>
+                    <a class="navItem" id="darkModeButton">DARKMODE</a>
+                </div>
+            </div>
+            
+
+            <div class="contentFlexRoot">
+                <div class="primary">
+ 
+                    <textarea id="manifest_paste" placeholder="Paste your SAP Manifest here" style="height: 256px;" required></textarea>
+
+                    <div id="formButtons">
+                        <button class="navItem" id="clearButton" style="border: none;">CLEAR</button>
+                        <button class="navItem" id="submitButton" style="border: none;">SUBMIT</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        
+        <script src="scripts.js"></script>
+
+    </body>
+</html>
