@@ -13,6 +13,8 @@ window.addEventListener('DOMContentLoaded', function() { // HTML ONLY LOAD
     document.getElementById("darkModeButton").addEventListener("click", darkModeToggle, false);
     document.getElementById("helpButton").addEventListener("click", showHelp, false);
     document.getElementById("closeHelpButton").addEventListener("click", hideHelp, false);
+    document.getElementById("closeWarningButton").addEventListener("click", hideWarning, false);
+    document.getElementById("help_page").classList.add("collapsed");
 });
 
 // --- FUNCTIONS ---
@@ -29,13 +31,16 @@ function darkModeToggle() {
 }
 
 function showHelp(){
-    document.getElementById("help_page").style.opacity = 1;
-    document.getElementById("help_page").style.visibility = "visible";
+    document.getElementById("help_page").classList.remove("collapsed");
 }
 
 function hideHelp(){
-    document.getElementById("help_page").style.opacity = 0;
-    document.getElementById("help_page").style.visibility = "hidden";
+    document.getElementById("help_page").classList.add("collapsed");
+}
+
+function hideWarning(){
+    document.getElementById("dev_warning").style.opacity = 0;
+    document.getElementById("dev_warning").style.visibility = "hidden";
 }
 
 export function buttonFeedback() {

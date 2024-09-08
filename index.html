@@ -12,15 +12,21 @@
         <link rel="preload" href="/res/dino_light.gif" as="image">
 
 
-        <script async type="module" src="/scripts/main.js"></script>
-        <script async src="scripts/pdfmake.min.js"></script>
-        <script async src="scripts/vfs_fonts.min.js"></script>
+        <script defer src="scripts/pdfmake.min.js"></script>
+        <script defer src="scripts/vfs_fonts.min.js"></script>
+        <script defer type="module" src="/scripts/main.js"></script>
     </head>
 
     <body id="body">
 
         <div class="screencover" id="preload">LOADING APPLICATION...
             <img src="res/dino_light.gif" style="position: absolute;top: 55vh;">
+        </div>
+
+        <div class="screencover" id="dev_warning">HEADS UP!<br> <br>
+            THIS APPLICATION IS IN ACTIVE DEVELOPMENT<br>
+            IT IS SUBJECT TO CHANGE WITHOUT WARNING<br> <br>
+            <a class="navItem" id="closeWarningButton">GOT IT!</a>
         </div>
 
         <div class="screencover" id="wait_page">
@@ -65,6 +71,11 @@
             <div class="contentFlexRoot">
                 <div class="primary">
                     <textarea id="manifest_paste" placeholder="Paste your SAP Manifest here" style="height: 256px;" required></textarea>
+
+                    <div id="options">
+                            <input type="checkbox" checked="checked" id="optionReduced">
+                            <label for="optionReduced">PRINT ONE SSCC PER LINE</label><br>
+                    </div>
 
                     <div id="formButtons">
                         <a class="navItem" id="submitButton">SUBMIT</a>

@@ -1,12 +1,22 @@
 var manifest_pdf;
 
-export function create_pdf(manifest) {
+export function create_pdf(manifest, reduced) {
 
     //BUILD TABLE CONTENT
-    var table_content = [["SSCC", "SKU", "DESC", "QTY"]];
-    for (var i=0; i<manifest.length; i++){
-        table_content.push([manifest[i].lastFour, manifest[i].sku, manifest[i].desc, manifest[i].qty]);
+    if (reduced) {
+        manifest = manifest.reduce((accumulator, current) => {
+            if (!accumulator.find((item) => item.sscc === current.sscc)) {
+              accumulator.push(current);
+            }
+            return accumulator;
+          }, []);
     }
+
+    var table_content = [["SSCC", "SKU", "DESCRIPTION", "QTY", "CHK"]];
+    for (var i=0; i<manifest.length; i++){
+        table_content.push([manifest[i].lastFour, manifest[i].sku, manifest[i].desc, manifest[i].qty, "[      ]"]);
+    }
+
 
     var header = "MANIFEST: " + manifest[0].manifest;
     // CREATE THE TABLE + PDF
@@ -17,14 +27,13 @@ export function create_pdf(manifest) {
             {
                 style: {fontSize: 10},
                 table: {
+                    widths: ["auto", "auto", "*", "auto", "auto"],
                     body: table_content
                 }
             }
         ]
     }
 
-    submitButton.innerHTML = "...";  // SHOW GENERATION START
-    submitButton.disabled = true;
     manifest_pdf = pdfMake.createPdf(document);
     manifest_pdf.getDataUrl(onCreatedPDF);
 
@@ -32,7 +41,5 @@ export function create_pdf(manifest) {
 
 function onCreatedPDF(url){ // PDF CREATION CALLBACK
     // REVERT BUTTON + OPEN TODO
-    submitButton.innerHTML = "SUBMIT";
-    submitButton.disabled = false;
     manifest_pdf.open();
 }

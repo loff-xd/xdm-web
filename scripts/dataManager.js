@@ -9,14 +9,14 @@ export function readManifestText(text){
     let manifest_array = text.split('\n'); // SPLIT LINES TO ARRAY
     if (manifest_array.length < 7){
         // FAILED MANIFEST CHECK
-        console.warn("failed size");
+        console.warn("failed size check");
         buttonFeedback();
         return false;
-        
+
     } else
     if (manifest_array[1].slice(0, 24) != "ZRSRPR_DELIVERY_MANIFEST") {
         // FAILED MANIFEST CHECK
-        console.warn("failed keyword");
+        console.warn("failed keyword check");
         buttonFeedback();
         return false;
 
@@ -51,6 +51,6 @@ export function readManifestText(text){
             manifest.push(entry);
         }
         manifest.sort(compareBySSCC);   // SORT BY SSCC LASTFOUR
-        console.info(manifest);
     }
+    return true;
 }

@@ -28,5 +28,12 @@ function onClear() {
 
 // SUBMIT BUTTON
 function onSubmit() {
-    if (readManifestText(manifest_paste_form.value)) create_pdf(manifest);
+    submitButton.innerHTML = "...";  // SHOW GENERATION START
+    submitButton.disabled = true;
+
+    var reduced = document.getElementById("optionReduced").checked;
+    if (readManifestText(manifest_paste_form.value)) {create_pdf(manifest, reduced);};
+
+    submitButton.innerHTML = "SUBMIT";
+    submitButton.disabled = false;
 };
