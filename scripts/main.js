@@ -14,8 +14,9 @@ window.addEventListener('load', function() { // CALL ON FULL PAGE LOAD
     document.getElementById("clearButton").addEventListener("click", onClear, false);
     submitButton = document.getElementById("submitButton");
     submitButton.addEventListener("click", onSubmit, false);
+
     document.getElementById("preload").style.opacity = 0;
-    this.document.getElementById("preload").style.visibility = "hidden";
+    document.getElementById("preload").style.visibility = "hidden";
 });
 
 // --- FUNCTIONS ---
@@ -27,7 +28,5 @@ function onClear() {
 
 // SUBMIT BUTTON
 function onSubmit() {
-    readManifestText(manifest_paste_form.value);
-
-    create_pdf(manifest);
+    if (readManifestText(manifest_paste_form.value)) create_pdf(manifest);
 };

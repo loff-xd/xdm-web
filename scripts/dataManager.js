@@ -1,6 +1,7 @@
 // --- IMPORTS ---
 import { compareBySSCC } from "./helpers.js";
 import { manifest } from "./main.js";
+import { buttonFeedback } from "./page.js";
 
 // --- FUNCTIONS ---
 export function readManifestText(text){
@@ -9,10 +10,16 @@ export function readManifestText(text){
     if (manifest_array.length < 7){
         // FAILED MANIFEST CHECK
         console.warn("failed size");
+        buttonFeedback();
+        return false;
+        
     } else
     if (manifest_array[1].slice(0, 24) != "ZRSRPR_DELIVERY_MANIFEST") {
         // FAILED MANIFEST CHECK
         console.warn("failed keyword");
+        buttonFeedback();
+        return false;
+
     } else {
 
         for (let i=manifest_array.length-1; i>=0; i--) {

@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="styles.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/x-icon" href="res/favicon.ico">
-        <script src="/scripts/page.js"></script>
+        <script type="module" src="/scripts/page.js"></script>
 
         <link rel="preload" href="/res/font/WarsawGothic.otf" as="font" type="font/otf" crossorigin>
         <link rel="preload" href="/res/dino_light.gif" as="image">
@@ -19,16 +19,35 @@
 
     <body id="body">
 
-        <div id="preload" style="display: flex; justify-content: center;">LOADING APPLICATION...
+        <div class="screencover" id="preload">LOADING APPLICATION...
             <img src="res/dino_light.gif" style="position: absolute;top: 55vh;">
         </div>
 
-        <div id="wait_page">
+        <div class="screencover" id="wait_page">
 
         </div>
 
-        <div id="help_page">
+        <div class="screencover" id="help_page">
+            <div class="helpItems">
+                <div class="helpItem">
+                    <img src="res/img/help_1.PNG"><br>
+                    (1) OPEN SAP AND ENTER "ZDELMAN" INTO THE SHORTCUT BOX, THEN EXECUTE
+                </div>
+                <div class="helpItem">
+                    <img src="res/img/help_2.PNG"><br>
+                    (2) ENTER YOUR SITE NUMBER AND DELIVERY MANIFEST NUMBER (6 DIGITS), THEN EXECUTE
+                </div>
+                <div class="helpItem">
+                    <img src="res/img/help_3.PNG"><br>
+                    (3) CLICK ON THE LOCAL FILE OPTION IN THE TOOLBAR
+                </div>
+                <div class="helpItem">
+                    <img src="res/img/help_4.PNG"><br>
+                    (4) SELECT "IN THE CLIPBOARD" AND THEN CHECK.<br>PASTE THE RESULT INTO THE FIELD ON THIS PAGE
+                </div>
+            </div>
 
+            <a class="navItem" id="closeHelpButton">GOT IT!</a>
         </div>
         
         <div class="main">
@@ -38,7 +57,7 @@
                 <div class="nav">
                     <a class="navItem" id="clearButton">CLEAR</a>
                     <a class="navItem" id="helpButton">HELP</a>
-                    <a class="navItem" id="darkModeButton">DARKMODE</a>
+                    <a class="navItem" id="darkModeButton" style="background-color: #7aa4d6;">DARKMODE</a>
                 </div>
             </div>
             

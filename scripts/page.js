@@ -11,6 +11,8 @@ if (theme !== null) {
 
 window.addEventListener('DOMContentLoaded', function() { // HTML ONLY LOAD
     document.getElementById("darkModeButton").addEventListener("click", darkModeToggle, false);
+    document.getElementById("helpButton").addEventListener("click", showHelp, false);
+    document.getElementById("closeHelpButton").addEventListener("click", hideHelp, false);
 });
 
 // --- FUNCTIONS ---
@@ -24,4 +26,19 @@ function darkModeToggle() {
         root.setAttribute("theme", "dark");
         localStorage.setItem("theme", "dark");
     }
+}
+
+function showHelp(){
+    document.getElementById("help_page").style.opacity = 1;
+    document.getElementById("help_page").style.visibility = "visible";
+}
+
+function hideHelp(){
+    document.getElementById("help_page").style.opacity = 0;
+    document.getElementById("help_page").style.visibility = "hidden";
+}
+
+export function buttonFeedback() {
+    document.getElementById("submitButton").classList.add("shake");
+    setTimeout(function() { document.getElementById("submitButton").classList.remove("shake"); }, 500);
 }

@@ -35,18 +35,75 @@ body {
     transition: background-color 500ms;
 }
 
-#preload {
+.screencover {
     position: absolute;
-    color: #ffffff;
+    display: flex;
+    justify-content: center;
     width: 100vw;
     height: 100vh;
-    background-color: #01121a;
+    z-index: 10;
 
+    transition: opacity 500ms, visibility 500ms;
+}
+
+#preload {
+    color: #ffffff;
     text-align: center;
     line-height: 100vh;
     font-family: Warsaw;
     font-size: 22pt;
-    transition: opacity 500ms, visibility 500ms;
+    background-color: #01121a;
+}
+
+#help_page {
+    visibility: hidden;
+    opacity: 0;
+    backdrop-filter: blur(8px);
+    background-color: rgba(1, 18, 26, 0.25);
+    
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    padding-bottom: 32px;
+}
+
+.helpItems {
+    width: 100vw;
+    max-width: 980px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    box-sizing: border-box;
+}
+
+.helpItem {
+    background-color: var(--background_content);
+    background-size: cover;
+    width: 100%;
+    height: 256px;
+    padding: 16px;
+    box-sizing: border-box;
+    margin: 16px;
+    max-width: 360px;
+    font-family: RedHatDisplay;
+
+    box-shadow: 10px 10px var(--box_shadow);
+}
+
+.helpItem > img {
+    width: 100%;
+    margin-bottom: 6px;
+    border: 3px solid var(--box_shadow);
+}
+
+#wait_page {
+    visibility: hidden;
+    opacity: 0;
 }
 
 .main {
@@ -111,6 +168,10 @@ body {
 .navItem:active {
     transform: translate(8px, 8px);
     box-shadow: none;
+}
+
+.navItem.shake {
+    animation: shake 0.5s 1;
 }
 
 .contentFlexRoot {
@@ -252,3 +313,17 @@ input:focus, textarea:focus {
         box-shadow: none;
     }
 }
+
+@keyframes shake {
+    0% { transform: translate(7px, 6px) }
+    10% { transform: translate(5px, 6px) }
+    20% { transform: translate(3px, 6px) }
+    30% { transform: translate(9px, 6px) }
+    40% { transform: translate(7px, 6px) }
+    50% { transform: translate(5px, 6px) }
+    60% { transform: translate(3px, 6px) }
+    70% { transform: translate(9px, 6px) }
+    80% { transform: translate(5px, 6px) }
+    90% { transform: translate(7px, 6px) }
+    100% { transform: translate(6px, 6px) }
+  }
