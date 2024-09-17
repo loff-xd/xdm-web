@@ -6,7 +6,10 @@ import { create_pdf } from "./pdf.js";
 
 var submitButton;
 let manifest_paste_form;
-export var manifest = [];
+export var manifest = {
+    manifestID: "",
+    ssccs: []
+};
 
 // --- EVENTS ---
 window.addEventListener('load', function() { // CALL ON FULL PAGE LOAD
@@ -32,7 +35,9 @@ function onSubmit() {
     submitButton.disabled = true;
 
     var reduced = document.getElementById("optionReduced").checked;
-    if (readManifestText(manifest_paste_form.value)) {create_pdf(manifest, reduced);};
+    if (readManifestText(manifest_paste_form.value)) {
+        create_pdf(manifest, reduced);
+    };
 
     submitButton.innerHTML = "SUBMIT";
     submitButton.disabled = false;

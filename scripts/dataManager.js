@@ -38,7 +38,7 @@ export function readManifestText(text){
         }
         manifest_array.shift(); // REMOVE HEADERS FROM ARRAY
 
-        // OBJECTIFY
+        /*/ OBJECTIFY
         for (let i=manifest_array.length-1; i>=0; i--) {
             let entry = new Object();
             entry.manifest = manifest_array[i][0];
@@ -50,7 +50,22 @@ export function readManifestText(text){
             entry.qty = manifest_array[i][7];
             manifest.push(entry);
         }
-        manifest.sort(compareBySSCC);   // SORT BY SSCC LASTFOUR
+        */
+
+        manifest.mainfestID = manifest_array[0][0]; // SET MANIFEST ID
+
+        for (let i=manifest_array.length-1; i>=0; i--) {
+            let entry = new Object();
+            entry.sscc = manifest_array[i][1];
+            entry.lastFour = entry.sscc.slice(entry.sscc.length - 4);
+            entry.sku = manifest_array[i][3];
+            entry.desc = manifest_array[i][4];
+            entry.gtin = manifest_array[i][6];
+            entry.qty = manifest_array[i][7];
+            manifest.ssccs.push(entry);
+        }
+
+        manifest.ssccs.sort(compareBySSCC);   // SORT BY SSCC LASTFOUR
     }
     return true;
 }
