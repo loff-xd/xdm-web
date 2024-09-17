@@ -1,21 +1,24 @@
 // --- IMPORTS ---
 import { readManifestText } from "./dataManager.js";
-import { create_pdf } from "./pdf.js";
+import { createPDF } from "./pdf.js";
 
 // --- GLOBALS ---
 
 var submitButton;
-let manifest_paste_form;
+let manifestPasteForm;
 export var manifest = {
     manifestID: "",
-    ssccs: []
+    ssccs: [],
 };
 
 // --- EVENTS ---
-window.addEventListener('load', function() { // CALL ON FULL PAGE LOAD
-    manifest_paste_form = document.getElementById("manifest_paste");
-    document.getElementById("clearButton").addEventListener("click", onClear, false);
-    submitButton = document.getElementById("submitButton");
+window.addEventListener("load", function () {
+    // CALL ON FULL PAGE LOAD
+    manifestPasteForm = document.getElementById("manifest_paste");
+    document
+        .getElementById("clear_button")
+        .addEventListener("click", onClear, false);
+    submitButton = document.getElementById("submit_button");
     submitButton.addEventListener("click", onSubmit, false);
 
     document.getElementById("preload").style.opacity = 0;
@@ -25,20 +28,19 @@ window.addEventListener('load', function() { // CALL ON FULL PAGE LOAD
 // --- FUNCTIONS ---
 // CLEAR BUTTON
 function onClear() {
-    manifest_paste_form.value = '';
-};
-
+    manifestPasteForm.value = "";
+}
 
 // SUBMIT BUTTON
 function onSubmit() {
-    submitButton.innerHTML = "...";  // SHOW GENERATION START
+    submitButton.innerHTML = "..."; // SHOW GENERATION START
     submitButton.disabled = true;
 
-    var reduced = document.getElementById("optionReduced").checked;
-    if (readManifestText(manifest_paste_form.value)) {
-        create_pdf(manifest, reduced);
-    };
+    var reduced = document.getElementById("option_reduced").checked;
+    if (readManifestText(manifestPasteForm.value)) {
+        createPDF(manifest, reduced);
+    }
 
     submitButton.innerHTML = "SUBMIT";
     submitButton.disabled = false;
-};
+}

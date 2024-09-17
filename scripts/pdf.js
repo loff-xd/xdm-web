@@ -1,45 +1,49 @@
-var manifest_pdf;
+var manifestPDF;
 
-export function create_pdf(manifest, reduced) {
-
+export function createPDF(manifest, reduced) {
     //BUILD TABLE CONTENT
     if (reduced) {
         manifest.ssccs = manifest.ssccs.reduce((accumulator, current) => {
             if (!accumulator.find((item) => item.sscc === current.sscc)) {
-              accumulator.push(current);
+                accumulator.push(current);
             }
             return accumulator;
-          }, []);
+        }, []);
     }
 
-    var table_content = [["SSCC", "SKU", "DESCRIPTION", "QTY", "CHK"]];
-    for (var i=0; i<manifest.ssccs.length; i++){
-        table_content.push([manifest.ssccs[i].lastFour, manifest.ssccs[i].sku, manifest.ssccs[i].desc, manifest.ssccs[i].qty, "[      ]"]);
+    var tableContent = [["SSCC", "SKU", "DESCRIPTION", "QTY", "CHK"]];
+    for (var i = 0; i < manifest.ssccs.length; i++) {
+        tableContent.push([
+            manifest.ssccs[i].lastFour,
+            manifest.ssccs[i].sku,
+            manifest.ssccs[i].desc,
+            manifest.ssccs[i].qty,
+            "[      ]",
+        ]);
     }
 
-
-    var header = "MANIFEST: " + manifest.manifestID;
     // CREATE THE TABLE + PDF
+    var header = "MANIFEST: " + manifest.manifestID;
     var document = {
-        style: {font: 'courier'},
+        style: { font: "courier" },
         content: [
-            {text: header, style: {fontSize: 18, bold: true}},
+            { text: header, style: { fontSize: 18, bold: true } },
             {
-                style: {fontSize: 10},
+                style: { fontSize: 10 },
                 table: {
                     widths: ["auto", "auto", "*", "auto", "auto"],
-                    body: table_content
-                }
-            }
-        ]
-    }
+                    body: tableContent,
+                },
+            },
+        ],
+    };
 
-    manifest_pdf = pdfMake.createPdf(document);
-    manifest_pdf.getDataUrl(onCreatedPDF);
-
+    manifestPDF = pdfMake.createPdf(document);
+    manifestPDF.getDataUrl(onCreatedPDF);
 }
 
-function onCreatedPDF(url){ // PDF CREATION CALLBACK
+function onCreatedPDF(url) {
+    // PDF CREATION CALLBACK
     // REVERT BUTTON + OPEN TODO
-    manifest_pdf.open();
+    manifestPDF.open();
 }

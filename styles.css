@@ -93,7 +93,7 @@ body {
     height: 0px;
 }
 
-.helpItems {
+.help_items {
     width: 100vw;
     max-width: 980px;
     margin: auto;
@@ -105,7 +105,7 @@ body {
     box-sizing: border-box;
 }
 
-.helpItem {
+.help_item {
     background-color: var(--background_content);
     background-size: cover;
     width: 100%;
@@ -119,7 +119,7 @@ body {
     box-shadow: 10px 10px var(--box_shadow);
 }
 
-.helpItem > img {
+.help_item > img {
     width: 100%;
     margin-bottom: 6px;
     border: 3px solid var(--box_shadow);
@@ -135,7 +135,7 @@ body {
     max-width: 1024px;
 }
 
-.headerFlexRoot {
+.header_flex_root {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -168,7 +168,7 @@ body {
     flex-wrap: wrap;
 }
 
-.navItem {
+.nav_item {
     font-family: Warsaw, sans-serif;
     font-size: 20pt;
     text-decoration: none;
@@ -189,16 +189,16 @@ body {
     transition: transform 150ms, box-shadow 150ms, background-color 150ms;
 }
 
-.navItem:active {
+.nav_item:active {
     transform: translate(8px, 8px);
     box-shadow: none;
 }
 
-.navItem.shake {
+.nav_item.shake {
     animation: shake 0.5s 1;
 }
 
-.contentFlexRoot {
+.content_flex_root {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -218,13 +218,7 @@ body {
     transition: background-color 500ms;
 }
 
-
-#formContainer {
-    display: flex;
-    flex-direction: column;
-}
-
-#clearButton {
+#clear_button {
     background-color: #d15f5f;
 }
 
@@ -256,7 +250,7 @@ textarea:focus {
     outline: none;
 }
 
-#formButtons {
+#form_buttons {
     margin: auto;
     display: flex;
     flex-direction: row;
@@ -290,7 +284,7 @@ textarea:focus {
         width: 100vw;
         justify-content: center;
     }
-    #formButtons {
+    #form_buttons {
         flex-wrap: wrap;
     }
     #header {
@@ -304,14 +298,14 @@ textarea:focus {
         margin: auto;
         box-shadow: none;
     }
-    .contentFlexRoot {
+    .content_flex_root {
         box-shadow: none;
         border-bottom: 10px solid var(--box_shadow);
         flex-direction: column;
         margin-top: 16px;
         box-sizing: border-box;
     }
-    .headerFlexRoot {
+    .header_flex_root {
         box-shadow: none;
         border-bottom: 10px solid var(--box_shadow);
         flex-wrap: wrap;
@@ -323,11 +317,11 @@ textarea:focus {
     
 
 @media(hover: hover) {
-    .navItem:hover {
+    .nav_item:hover {
         transform: translate(6px, 6px);
         box-shadow: none;
     }
-    .navItem:active {
+    .nav_item:active {
         transform: translate(8px, 8px);
         box-shadow: none;
     }

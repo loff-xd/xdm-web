@@ -10,10 +10,10 @@ if (theme !== null) {
 }
 
 window.addEventListener('DOMContentLoaded', function() { // HTML ONLY LOAD
-    document.getElementById("darkModeButton").addEventListener("click", darkModeToggle, false);
-    document.getElementById("helpButton").addEventListener("click", showHelp, false);
-    document.getElementById("closeHelpButton").addEventListener("click", hideHelp, false);
-    document.getElementById("closeWarningButton").addEventListener("click", hideWarning, false);
+    document.getElementById("dark_mode_button").addEventListener("click", darkModeToggle, false);
+    document.getElementById("help_button").addEventListener("click", showHelp, false);
+    document.getElementById("close_help_button").addEventListener("click", hideHelp, false);
+    document.getElementById("close_warning_button").addEventListener("click", hideWarning, false);
     document.getElementById("help_page").classList.add("collapsed");
 });
 
@@ -45,5 +45,5 @@ function hideWarning(){
 
 export function buttonFeedback() {
     document.getElementById("submitButton").classList.add("shake");
-    setTimeout(function() { document.getElementById("submitButton").classList.remove("shake"); }, 500);
+    setTimeout(function() { document.getElementById("submit_button").classList.remove("shake"); }, 500);
 }
