@@ -5,7 +5,7 @@ import { createPDF } from "./pdf.js";
 // --- GLOBALS ---
 
 var submitButton;
-let manifestPasteForm;
+var manifestPasteForm;
 export var manifest = {
     manifestID: "",
     ssccs: [],

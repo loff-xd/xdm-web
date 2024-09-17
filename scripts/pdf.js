@@ -2,30 +2,63 @@ var manifestPDF;
 
 export function createPDF(manifest, reduced) {
     //BUILD TABLE CONTENT
-    if (reduced) {
-        manifest.ssccs = manifest.ssccs.reduce((accumulator, current) => {
-            if (!accumulator.find((item) => item.sscc === current.sscc)) {
-                accumulator.push(current);
-            }
-            return accumulator;
-        }, []);
-    }
 
     var tableContent = [["SSCC", "SKU", "DESCRIPTION", "QTY", "CHK"]];
-    for (var i = 0; i < manifest.ssccs.length; i++) {
-        tableContent.push([
-            manifest.ssccs[i].lastFour,
-            manifest.ssccs[i].sku,
-            manifest.ssccs[i].desc,
-            manifest.ssccs[i].qty,
-            "[      ]",
-        ]);
+    for (let i = 0; i < manifest.ssccs.length; i++) {
+        
+        // FOR UNIQUE ARTICLES
+        if (manifest.ssccs[i].articles.length == 1) {
+            tableContent.push([
+                manifest.ssccs[i].lastFour,
+                manifest.ssccs[i].articles[0].sku,
+                manifest.ssccs[i].articles[0].desc,
+                manifest.ssccs[i].articles[0].qty,
+                "[   ]",
+            ]);
+
+        } else if (reduced) {
+            // FOR MIXED BOXES WITH REDUCED OPTION CHECKED
+            let multiDesc = "";
+            for (let j = 0; j < manifest.ssccs[i].articles.length; j++) {
+                if (j % 3 == 0 && j != 0) multiDesc += "\n";
+                multiDesc += (manifest.ssccs[i].articles[j].sku + " x" + manifest.ssccs[i].articles[j].qty + ",").padEnd(16);                
+            }
+
+            tableContent.push([
+                manifest.ssccs[i].lastFour,
+                "[MULTI]",
+                multiDesc,
+                manifest.ssccs[i].articles.length,
+                "[   ]",
+            ]);
+        } else {
+            // FOR MIXED BOXES WHEN REDUCED IS NOT CHECKED
+            for (let j = 0; j < manifest.ssccs[i].articles.length; j++) {
+                tableContent.push([
+                    manifest.ssccs[i].lastFour,
+                    manifest.ssccs[i].articles[j].sku,
+                    manifest.ssccs[i].articles[j].desc,
+                    manifest.ssccs[i].articles[j].qty,
+                    "[   ]",
+                ]);
+            }
+        }
+        
     }
 
     // CREATE THE TABLE + PDF
-    var header = "MANIFEST: " + manifest.manifestID;
-    var document = {
-        style: { font: "courier" },
+    pdfMake.fonts = {
+        mono: {
+          normal: 'CourierPrime.ttf',
+          bold: 'CourierPrimeBold.ttf',
+          italics: 'CourierPrimeItalic.ttf',
+          bolditalics: 'CourierPrimeBoldItalic.ttf'
+        }
+    }
+
+    let header = "MANIFEST: " + manifest.manifestID;
+    let PDFdocument = {
+        defaultStyle: { font: "mono" },
         content: [
             { text: header, style: { fontSize: 18, bold: true } },
             {
@@ -35,10 +68,10 @@ export function createPDF(manifest, reduced) {
                     body: tableContent,
                 },
             },
-        ],
+        ]
     };
 
-    manifestPDF = pdfMake.createPdf(document);
+    manifestPDF = pdfMake.createPdf(PDFdocument);
     manifestPDF.getDataUrl(onCreatedPDF);
 }
 
