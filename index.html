@@ -95,28 +95,39 @@
                 <div class="nav">
                     <a class="nav_item" id="clear_button">CLEAR</a>
                     <a class="nav_item" id="help_button">HELP</a>
-                    <a class="nav_item" id="dark_mode_button" style="background-color: #7aa4d6;">DARKMODE</a>
+                    <a class="nav_item" id="dark_mode_button">DARKMODE</a>
                 </div>
             </div>
             
 
-            <div class="content_flex_root">
+            <div class="content_flex_root" id="manifest_paste_container">
+                <div class="primary" style="padding-bottom: 0; text-align: center;">PASTE SAP MANIFEST:</div>  
                 <div class="primary">
-                    <textarea id="manifest_paste" placeholder="Paste your SAP Manifest here" style="height: 256px;" required></textarea>
-
-                    <div id="options">
-                            <input type="checkbox" checked="checked" id="option_reduced">
-                            <label for="option_reduced">PRINT ONE SSCC PER LINE</label><br>
-                    </div>
+                    <textarea id="manifest_paste" placeholder="Paste your SAP Manifest here" style="height: 64px;" required></textarea>
 
                     <div id="form_buttons">
-                        <a class="nav_item" id="submit_button">SUBMIT</a>
+                        <a class="nav_item" id="submit_button">IMPORT</a>
                     </div>
                 </div>
             </div>
 
+            <div class="content_flex_root" id="sscc_list_container">
+                <div class="primary" style="padding-bottom: 0; text-align: center;">SELECT HIGH RISK BOXES:</div>                
+                <div class="primary" id="sscc_list" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+                </div>
+    
+                <div class="primary" id="options">
+                    <input type="checkbox" checked="checked" id="option_reduced">
+                    <label for="option_reduced">PRINT ONE SSCC PER LINE</label><br>
+                    <div id="form_buttons">
+                        <a class="nav_item" id="create_button">CREATE PDF</a>
+                    </div>
+                </div>
+
+            </div>
+
             <div id="version">
-                Build Date: 2024-09-17
+                Build Date: 2024-09-24
             </div>
         </div>
     </body>

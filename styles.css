@@ -6,6 +6,9 @@
     --background_shutter: #ffe28a;
     color: black;
     --dino: url(res/dino_dark.gif);
+    --nav_green: #74c8ae;
+    --nav_red: #d15f5f;
+    --nav_blue: #7aa4d6;
 }
 
 [theme="dark"] {
@@ -16,6 +19,9 @@
     --background_shutter: #005f73;
     color: #fef7f1;
     --dino: url(res/dino_light.gif);
+    --nav_green: #74c8ae;
+    --nav_red: #d15f5f;
+    --nav_blue: #7aa4d6;
 }
 
 html {
@@ -23,6 +29,8 @@ html {
     background-size: cover;
     overflow-x: hidden;
     color: white;
+
+    user-select: none;
 }
 
 body {
@@ -86,11 +94,10 @@ body {
     transition: opacity 250ms;
 }
 
-#help_page.collapsed {
+.collapsed {
     visibility: collapse;
     opacity: 0;
-    min-height: 0;
-    height: 0px;
+    max-height: 0;
 }
 
 .help_items {
@@ -136,6 +143,7 @@ body {
 }
 
 .header_flex_root {
+    max-width: 740px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -143,7 +151,7 @@ body {
     background-color: var(--background_content);
     background-size: cover;
     margin: auto;
-    margin-bottom: 24px;
+    
     padding-bottom: 8px;
     padding-top: 8px;
 
@@ -183,15 +191,10 @@ body {
     cursor: pointer;
 
     box-shadow: 6px 6px var(--box_shadow);
-    background-color: #74c8ae;
+    background-color: var(--nav_green);
     background-size: cover;
 
     transition: transform 150ms, box-shadow 150ms, background-color 150ms;
-}
-
-.nav_item:active {
-    transform: translate(8px, 8px);
-    box-shadow: none;
 }
 
 .nav_item.shake {
@@ -199,13 +202,17 @@ body {
 }
 
 .content_flex_root {
+    max-width: 740px;
+    width: 100%;
+
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     margin: auto;
+    margin-top: 24px;
 
     box-shadow: 10px 10px var(--box_shadow);
-    transition: box-shadow 500ms, border 500ms;
+    transition: box-shadow 500ms, border 500ms, opacity 250ms;
 }
 
 .primary {
@@ -214,12 +221,17 @@ body {
     padding: 32px;
     font-family: RedHatDisplay, sans-serif;
     font-size: 18px;
+    box-sizing: border-box;
 
     transition: background-color 500ms;
 }
 
 #clear_button {
-    background-color: #d15f5f;
+    background-color: var(--nav_red);
+}
+
+#dark_mode_button {
+    background-color: var(--nav_blue);
 }
 
 textarea {
@@ -228,7 +240,7 @@ textarea {
     width: 100%;
     resize: vertical;
 
-    font-family: monospace;
+    font-family: RedHatMonospace;
     font-size: 8pt;
     text-decoration: none;
     color: black;
@@ -268,6 +280,28 @@ textarea:focus {
     overflow: hidden;
 }
 
+.sscc_list_item {
+    margin: 4px;
+    font-family: RedHatMonospace;
+    color: black;
+
+    width: 64px;
+    text-align: center;
+    cursor: pointer;
+
+    box-shadow: 2px 2px var(--box_shadow);
+    background-color: var(--nav_blue);
+    background-size: cover;
+
+    transition: transform 150ms, box-shadow 150ms, background-color 150ms;
+}
+
+.sscc_list_item.selected {
+    background-color: var(--nav_red);
+    transform: translate(2px, 2px);
+    box-shadow: none;
+}
+
 @font-face {
     font-family: Warsaw;
     src: url(res/font/WarsawGothic.otf);
@@ -278,6 +312,12 @@ textarea:focus {
     font-family: RedHatDisplay;
     src: url(res/font/RedHatDisplay-VariableFont_wght.ttf);
     font-weight: 500;
+    font-display: block;
+}
+
+@font-face {
+    font-family: RedHatMonospace;
+    src: url(res/font/RedHatMono-VariableFont_wght.ttf);
     font-display: block;
 }
 
@@ -335,17 +375,25 @@ textarea:focus {
         transform: translate(8px, 8px);
         box-shadow: none;
     }
+    .sscc_list_item:hover {
+        transform: translate(2px, 2px);
+        box-shadow: none;
+    }
+    .sscc_list_item:active {
+        transform: translate(3px, 3px);
+        box-shadow: none;
+    }
 }
 
 @keyframes shake {
     0% { transform: translate(7px, 6px) }
     10% { transform: translate(5px, 6px) }
-    20% { transform: translate(3px, 6px) }
-    30% { transform: translate(9px, 6px) }
+    20% { transform: translate(4px, 6px) }
+    30% { transform: translate(8px, 6px) }
     40% { transform: translate(7px, 6px) }
     50% { transform: translate(5px, 6px) }
-    60% { transform: translate(3px, 6px) }
-    70% { transform: translate(9px, 6px) }
+    60% { transform: translate(4px, 6px) }
+    70% { transform: translate(8px, 6px) }
     80% { transform: translate(5px, 6px) }
     90% { transform: translate(7px, 6px) }
     100% { transform: translate(6px, 6px) }

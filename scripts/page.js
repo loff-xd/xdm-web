@@ -15,6 +15,7 @@ window.addEventListener('DOMContentLoaded', function() { // HTML ONLY LOAD
     document.getElementById("close_help_button").addEventListener("click", hideHelp, false);
     document.getElementById("close_warning_button").addEventListener("click", hideWarning, false);
     document.getElementById("help_page").classList.add("collapsed");
+    document.getElementById("sscc_list_container").classList.add("collapsed");
 });
 
 // --- FUNCTIONS ---
@@ -44,6 +45,6 @@ function hideWarning(){
 }
 
 export function buttonFeedback() {
-    document.getElementById("submitButton").classList.add("shake");
+    document.getElementById("submit_button").classList.add("shake");
     setTimeout(function() { document.getElementById("submit_button").classList.remove("shake"); }, 500);
 }

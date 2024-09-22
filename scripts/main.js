@@ -5,11 +5,13 @@ import { createPDF } from "./pdf.js";
 // --- GLOBALS ---
 
 var submitButton;
+var createButton;
 var manifestPasteForm;
 export var manifest = {
     manifestID: "",
     ssccs: [],
 };
+var ssccList;
 
 // --- EVENTS ---
 window.addEventListener("load", function () {
@@ -21,6 +23,11 @@ window.addEventListener("load", function () {
     submitButton = document.getElementById("submit_button");
     submitButton.addEventListener("click", onSubmit, false);
 
+    createButton = document.getElementById("create_button");
+    createButton.addEventListener("click", onCreatePDF, false);
+
+    ssccList = document.getElementById("sscc_list");
+
     document.getElementById("preload").style.opacity = 0;
     document.getElementById("preload").style.visibility = "hidden";
 });
@@ -29,18 +36,51 @@ window.addEventListener("load", function () {
 // CLEAR BUTTON
 function onClear() {
     manifestPasteForm.value = "";
+    ssccList.innerHTML = "";
+    document.getElementById("sscc_list_container").classList.add("collapsed");
+    document.getElementById("manifest_paste_container").classList.remove("collapsed");
+}
+
+function toggleHighRisk(){
+    let targetSSCC = manifest.ssccs.find((element) => element.sscc == this.id);
+    if (targetSSCC.highRisk === true) {
+        this.classList.remove("selected");
+        targetSSCC.highRisk = false;
+    } else {
+        this.classList.add("selected");
+        targetSSCC.highRisk = true;
+    }
 }
 
 // SUBMIT BUTTON
 function onSubmit() {
-    submitButton.innerHTML = "..."; // SHOW GENERATION START
     submitButton.disabled = true;
 
-    var reduced = document.getElementById("option_reduced").checked;
+    // GENERATE LIST IF SUCCESSFULLY READ 
     if (readManifestText(manifestPasteForm.value)) {
-        createPDF(manifest, reduced);
-    }
+        //createPDF(manifest, reduced);
 
-    submitButton.innerHTML = "SUBMIT";
+        manifest.ssccs.forEach(entry => {
+            let li = document.createElement("div");
+            li.classList.add("sscc_list_item");
+            li.innerText = entry.lastFour;
+            li.id = entry.sscc;
+            li.addEventListener('click', toggleHighRisk, false);
+            ssccList.appendChild(li);
+        });
+        document.getElementById("sscc_list_container").classList.remove("collapsed");
+        document.getElementById("manifest_paste_container").classList.add("collapsed");
+        
+    }
     submitButton.disabled = false;
+}
+
+// CREATE PDF BUTTON
+function onCreatePDF() {
+    createButton.disabled = true;
+
+    var reduced = document.getElementById("option_reduced").checked;
+    createPDF(manifest, reduced);
+
+    createButton.disabled = false;
 }

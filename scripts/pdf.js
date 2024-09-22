@@ -3,8 +3,11 @@ var manifestPDF;
 export function createPDF(manifest, reduced) {
     //BUILD TABLE CONTENT
 
-    var tableContent = [["SSCC", "SKU", "DESCRIPTION", "QTY", "CHK"]];
+    var tableContent = [["SSCC", "SKU", "DESCRIPTION", "QTY", "HR?", "CHK?"]];
     for (let i = 0; i < manifest.ssccs.length; i++) {
+
+        let hrText = "  ";
+        if (manifest.ssccs[i].highRisk) {hrText = "HR"}
         
         // FOR UNIQUE ARTICLES
         if (manifest.ssccs[i].articles.length == 1) {
@@ -13,6 +16,7 @@ export function createPDF(manifest, reduced) {
                 manifest.ssccs[i].articles[0].sku,
                 manifest.ssccs[i].articles[0].desc,
                 manifest.ssccs[i].articles[0].qty,
+                hrText,
                 "[   ]",
             ]);
 
@@ -29,6 +33,7 @@ export function createPDF(manifest, reduced) {
                 "[MULTI]",
                 multiDesc,
                 manifest.ssccs[i].articles.length,
+                hrText,
                 "[   ]",
             ]);
         } else {
@@ -39,6 +44,7 @@ export function createPDF(manifest, reduced) {
                     manifest.ssccs[i].articles[j].sku,
                     manifest.ssccs[i].articles[j].desc,
                     manifest.ssccs[i].articles[j].qty,
+                    hrText,
                     "[   ]",
                 ]);
             }
@@ -64,7 +70,8 @@ export function createPDF(manifest, reduced) {
             {
                 style: { fontSize: 10 },
                 table: {
-                    widths: ["auto", "auto", "*", "auto", "auto"],
+                    headerRows: 1,
+                    widths: ["auto", "auto", "*", "auto", "auto", "auto"],
                     body: tableContent,
                 },
             },
