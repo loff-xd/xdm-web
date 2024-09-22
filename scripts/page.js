@@ -47,6 +47,6 @@ function hideWarning(){
 }
 
 export function buttonFeedback() {
-    document.getElementById("submit_button").classList.add("shake");
-    setTimeout(function() { document.getElementById("submit_button").classList.remove("shake"); }, 500);
+    document.getElementById("manifest_paste").classList.add("shake");
+    setTimeout(function() { document.getElementById("manifest_paste").classList.remove("shake"); }, 500);
 }

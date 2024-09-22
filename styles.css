@@ -198,10 +198,6 @@ body {
     transition: transform 150ms, box-shadow 150ms, background-color 150ms;
 }
 
-.nav_item.shake {
-    animation: shake 0.5s 1;
-}
-
 .content_flex_root {
     max-width: 740px;
     width: 100%;
@@ -261,6 +257,10 @@ textarea:focus {
     transform: translate(6px, 6px);
     box-shadow: none;
     outline: none;
+}
+
+.shake {
+    animation: shake 0.5s 1;
 }
 
 #form_buttons {
@@ -366,37 +366,37 @@ textarea:focus {
         padding-right: 0;
     }
 }
-    
+
+.nav_item:active {
+    transform: translate(8px, 8px);
+    box-shadow: none;
+}
+.sscc_list_item:active {
+    transform: translate(3px, 3px);
+    box-shadow: none;
+}
 
 @media(hover: hover) {
     .nav_item:hover {
         transform: translate(6px, 6px);
         box-shadow: none;
     }
-    .nav_item:active {
-        transform: translate(8px, 8px);
-        box-shadow: none;
-    }
     .sscc_list_item:hover {
         transform: translate(2px, 2px);
-        box-shadow: none;
-    }
-    .sscc_list_item:active {
-        transform: translate(3px, 3px);
         box-shadow: none;
     }
 }
 
 @keyframes shake {
-    0% { transform: translate(7px, 6px) }
-    10% { transform: translate(5px, 6px) }
-    20% { transform: translate(4px, 6px) }
-    30% { transform: translate(8px, 6px) }
-    40% { transform: translate(7px, 6px) }
-    50% { transform: translate(5px, 6px) }
-    60% { transform: translate(4px, 6px) }
-    70% { transform: translate(8px, 6px) }
-    80% { transform: translate(5px, 6px) }
-    90% { transform: translate(7px, 6px) }
-    100% { transform: translate(6px, 6px) }
+    0% { transform: translate(1px, 0px) }
+    10% { transform: translate(-1px, 0px) }
+    20% { transform: translate(-2px, 0px) }
+    30% { transform: translate(2px, 0px) }
+    40% { transform: translate(1px, 0px) }
+    50% { transform: translate(-1px, 0px) }
+    60% { transform: translate(-2px, 0px) }
+    70% { transform: translate(2px, 0px) }
+    80% { transform: translate(-1px, 0px) }
+    90% { transform: translate(1px, 0px) }
+    100% { transform: translate(0px, 0px) }
   }
