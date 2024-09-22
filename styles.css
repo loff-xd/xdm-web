@@ -27,10 +27,7 @@
 html {
     background-color: var(--background_main);
     background-size: cover;
-    overflow-x: hidden;
     color: white;
-
-    user-select: none;
 }
 
 body {
@@ -40,6 +37,10 @@ body {
     justify-content: center;
     height: fit-content;
     min-height: 100vh;
+
+    overflow-x: hidden;
+    overflow-y: hidden;
+    user-select: none;
 
     transition: background-color 500ms;
 }
@@ -346,6 +347,7 @@ textarea:focus {
     }
     .main {
         margin: auto;
+        margin-top: 48px;
         box-shadow: none;
     }
     .content_flex_root {

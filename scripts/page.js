@@ -42,6 +42,8 @@ function hideHelp(){
 function hideWarning(){
     document.getElementById("dev_warning").style.opacity = 0;
     document.getElementById("dev_warning").style.visibility = "hidden";
+
+    document.getElementById("body").style.overflowY = "auto";
 }
 
 export function buttonFeedback() {
