@@ -4,6 +4,10 @@ $manifestJson = $_REQUEST["content"];
 $manifestID = $_REQUEST["id"];
 $del = $_REQUEST["del"];
 
+if (!is_dir("res/data")) {
+    mkdir("res/data");
+}
+
 if ($del == 1) {
     $paths = glob("res/data/*");
     foreach($paths as $file) {
