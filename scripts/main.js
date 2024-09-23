@@ -32,7 +32,17 @@ window.addEventListener("load", function () {
 
     document.addEventListener("keypress", event => {
         if (event.key == "d") {
-            console.log(manifest);
+            let rt;
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    rt = this.responseText;
+                    alert(rt);
+                }
+            };
+            xmlhttp.open("GET", "fileHandler.php?del=1", true);
+            xmlhttp.send();
         }
         if (event.key == "j") {
             let rt;
