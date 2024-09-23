@@ -368,7 +368,7 @@ textarea:focus {
 }
 
 .nav_item:active {
-    transform: translate(8px, 8px);
+    transform: translate(6px, 6px);
     box-shadow: none;
 }
 .sscc_list_item:active {
@@ -379,6 +379,10 @@ textarea:focus {
 @media(hover: hover) {
     .nav_item:hover {
         transform: translate(6px, 6px);
+        box-shadow: none;
+    }
+    .nav_item:active {
+        transform: translate(8px, 8px);
         box-shadow: none;
     }
     .sscc_list_item:hover {
@@ -399,4 +403,4 @@ textarea:focus {
     80% { transform: translate(-1px, 0px) }
     90% { transform: translate(1px, 0px) }
     100% { transform: translate(0px, 0px) }
-  }
+} 

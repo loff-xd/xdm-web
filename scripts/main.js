@@ -3,7 +3,6 @@ import { readManifestText } from "./dataManager.js";
 import { createPDF } from "./pdf.js";
 
 // --- GLOBALS ---
-
 var submitButton;
 var createButton;
 var manifestPasteForm;
@@ -30,6 +29,25 @@ window.addEventListener("load", function () {
 
     document.getElementById("preload").style.opacity = 0;
     document.getElementById("preload").style.visibility = "hidden";
+
+    document.addEventListener("keypress", event => {
+        if (event.key == "d") {
+            console.log(manifest);
+        }
+        if (event.key == "j") {
+            let rt;
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    rt = this.responseText;
+                    alert(rt);
+                }
+            };
+            xmlhttp.open("GET", "fileHandler.php?id=" + manifest.manifestID + "&content=" + JSON.stringify(manifest), true);
+            xmlhttp.send();
+        }
+    })
 });
 
 // --- FUNCTIONS ---
