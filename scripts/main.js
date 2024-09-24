@@ -54,7 +54,7 @@ window.addEventListener("load", function () {
                     alert(rt);
                 }
             };
-            xmlhttp.open("GET", "fileHandler.php?id=" + manifest.manifestID + "&content=" + JSON.stringify(manifest), true);
+            xmlhttp.open("POST", "fileHandler.php?id=" + manifest.manifestID + "&content=" + JSON.stringify(manifest), true);
             xmlhttp.send();
         }
     })
