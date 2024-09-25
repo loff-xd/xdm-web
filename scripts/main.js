@@ -46,7 +46,7 @@ window.addEventListener("load", function () {
         }
         if (event.key == "j") {
             let rt;
-
+            let content = JSON.stringify(manifest);
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -54,8 +54,11 @@ window.addEventListener("load", function () {
                     alert(rt);
                 }
             };
-            xmlhttp.open("POST", "fileHandler.php?id=" + manifest.manifestID + "&content=" + JSON.stringify(manifest), true);
-            xmlhttp.send();
+
+            xmlhttp.open("POST", "fileHandler.php?id=" + manifest.manifestID, true);
+            xmlhttp.setRequestHeader("Content-type", "application/json");
+            xmlhttp.send(content);
+            console.log(JSON.stringify(manifest).length);
         }
     })
 });

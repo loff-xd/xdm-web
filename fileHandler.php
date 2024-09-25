@@ -1,6 +1,6 @@
 <?php
 // SET VARS FROM REQUEST
-$manifestJson = $_REQUEST["content"];
+$manifestJson = file_get_contents("php://input");
 $manifestID = $_REQUEST["id"];
 $del = $_REQUEST["del"];
 
@@ -38,7 +38,8 @@ if ($del == 1) {
         fwrite($file, $manifestJson);
         fclose($file);
     
-        echo $manifestID . ": Saved.";
+        //echo "SAVE OK";
+        echo strlen($manifestJson);
     }
 
 }
