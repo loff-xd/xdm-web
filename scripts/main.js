@@ -5,6 +5,7 @@ import { createPDF } from "./pdf.js";
 // --- GLOBALS ---
 var submitButton;
 var createButton;
+var saveButton;
 var manifestPasteForm;
 export var manifest = {
     manifestID: "",
@@ -16,9 +17,8 @@ var ssccList;
 window.addEventListener("load", function () {
     // CALL ON FULL PAGE LOAD
     manifestPasteForm = document.getElementById("manifest_paste");
-    document
-        .getElementById("clear_button")
-        .addEventListener("click", onClear, false);
+    document.getElementById("clear_button").addEventListener("click", onClear, false);
+
     submitButton = document.getElementById("submit_button");
     submitButton.addEventListener("click", onSubmit, false);
 
@@ -30,49 +30,50 @@ window.addEventListener("load", function () {
     document.getElementById("preload").style.opacity = 0;
     document.getElementById("preload").style.visibility = "hidden";
 
-    document.addEventListener("keypress", event => {
-        if (event.key == "d") {
-            let rt;
-
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    rt = this.responseText;
-                    alert(rt);
-                }
-            };
-            xmlhttp.open("GET", "fileHandler.php?del=1", true);
-            xmlhttp.send();
-        }
-        if (event.key == "j") {
-            let rt;
-            let content = JSON.stringify(manifest);
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    rt = this.responseText;
-                    alert(rt);
-                }
-            };
-
-            xmlhttp.open("POST", "fileHandler.php?id=" + manifest.manifestID, true);
-            xmlhttp.setRequestHeader("Content-type", "application/json");
-            xmlhttp.send(content);
-            console.log(JSON.stringify(manifest).length);
-        }
-    })
+    saveButton = document.getElementById("save_button");
+    saveButton.addEventListener("click", doUpload, false);
 });
 
 // --- FUNCTIONS ---
 // CLEAR BUTTON
+function doUpload() {
+    let rt;
+    let content = JSON.stringify(manifest);
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            rt = this.responseText;
+            alert(rt);
+        }
+    };
+
+    xmlhttp.open("POST", "fileHandler.php?id=" + manifest.manifestID, true);
+    xmlhttp.setRequestHeader("Content-type", "application/json");
+    xmlhttp.send(content);
+    console.log(JSON.stringify(manifest).length);
+}
+
 function onClear() {
+    if (window.confirm("Do you wish to also erase all store manifests from the server?")) {
+        let rt;
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                rt = this.responseText;
+                alert(rt);
+            }
+        };
+        xmlhttp.open("GET", "fileHandler.php?del=1", true);
+        xmlhttp.send();
+    }
     manifestPasteForm.value = "";
     ssccList.innerHTML = "";
     document.getElementById("sscc_list_container").classList.add("collapsed");
     document.getElementById("manifest_paste_container").classList.remove("collapsed");
 }
 
-function toggleHighRisk(){
+function toggleHighRisk() {
     let targetSSCC = manifest.ssccs.find((element) => element.sscc == this.id);
     if (targetSSCC.highRisk === true) {
         this.classList.remove("selected");
@@ -101,7 +102,7 @@ function onSubmit() {
         });
         document.getElementById("sscc_list_container").classList.remove("collapsed");
         document.getElementById("manifest_paste_container").classList.add("collapsed");
-        
+
     }
     submitButton.disabled = false;
 }

@@ -13,7 +13,7 @@ if ($del == 1) {
     foreach($paths as $file) {
         unlink($file);
     }
-    echo "DEL OK";
+    echo "Server: All files deleted.";
 } else {
 
     if ($manifestID != NULL) {
@@ -38,8 +38,7 @@ if ($del == 1) {
         fwrite($file, $manifestJson);
         fclose($file);
     
-        //echo "SAVE OK";
-        echo strlen($manifestJson);
+        echo "Server: Manifest: " . $manifestID . " saved.";
     }
 
 }
